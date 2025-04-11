@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재무 데이터 시각화</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>FinanceTalkTalk</h2>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/search">Public Filings</a>
+        <a href="/stock">Stock Exchange Decisions</a>
+        <a href="/preferences">Preferences</a>
+        <a href="/financial-indicators">Financial Indicators</a>
+        <a href="/financial-statements">Financial Statements</a>
+        <a href="/news">News</a>
+    </nav>
+    <div class="container">
+        <h1>재무 데이터 시각화</h1>
+        <form method="post">
+            <label for="corp_names">회사명 (쉼표로 구분):</label>
+            <input type="text" id="corp_names" name="corp_names" required><br><br>
+
+            <label for="bsns_year">사업연도:</label>
+            <input type="text" id="bsns_year" name="bsns_year" required><br><br>
+
+            <label for="report_option">보고서 종류:</label>
+            <select id="report_option" name="report_option" required>
+                <option value="1">1분기보고서</option>
+                <option value="2">반기보고서</option>
+                <option value="3">3분기보고서</option>
+                <option value="4">사업보고서</option>
+            </select><br><br>
+
+            <label for="idx_option">지표분류:</label>
+            <select id="idx_option" name="idx_option" required>
+                <option value="1">수익성지표</option>
+                <option value="2">안정성지표</option>
+                <option value="3">성장성지표</option>
+                <option value="4">활동성지표</option>
+            </select><br><br>
+
+            <button type="submit">시각화</button>
+        </form>
+
+        {% if img_base64 %}
+            <h2>시각화 결과:</h2>
+            <img src="data:image/png;base64,{{ img_base64 }}" alt="Financial Data Visualization">
+        {% endif %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Financial Info App. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
